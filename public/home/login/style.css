@@ -113,7 +113,7 @@ form.sign-in-form {
 
 .social-text {
   padding: 0.7rem 0;
-  font-size: 1rem;
+  font-size: .857rem;
 }
 
 .social-media {
@@ -406,4 +406,20 @@ form.sign-in-form {
     bottom: 28%;
     left: 50%;
   }
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    text-transform: none;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    text-transform: none;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    text-transform: none;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    text-transform: none;
+}
+::placeholder { /* Recent browsers */
+    text-transform: none;
 }

@@ -3,19 +3,30 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="mobile-web-app-capable" content="yes">
         <!-- Tell the browser to be responsive to screen width -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="keyword" content="Portal Masjid Baiturrahman, Pembayaran Zakat, Pemuda Baiturrahman, Masjid Baiturrahman, Taman Senopati, Villa Permata Cikampek"/>
+        <meta name="author" content="Pemuda Baiturrahman - Levind Sein, Eki, Fahni"/>
+        <meta name="description"content="Bayar zakat online, mempermudah masyarakat meraih kebaikan." />
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="og:title" content="Portal Masjid Baiturrahman" />
+        <meta name="og:type" content="website" />
+        <meta name="og:image" content="{{asset('home/login/img/meta.jpg')}}" />
+        <meta name="google" content="notranslate">
+
         <!-- Favicon icon -->
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="{{asset('template/assets/images/favicon.png')}}">
-        <title>(Title)</title>
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('template/assets/images/favicon.png')}}">
+        <title>@yield('content-title') | {{$Gsetting->title}}</title>
+
+        <script src="{{asset('template/assets/libs/jquery/dist/jquery.min.js')}}"></script>
+
         <!-- Custom CSS -->
         <link href="{{asset('template/dist/css/style.min.css')}}" rel="stylesheet">
+
+        {{-- Toastr --}}
+        <link rel="stylesheet" type="text/css" href="{{asset('home/login/toastr.min.css')}}">
+        <script src="{{asset('home/login/toastr.min.js')}}"></script>
     </head>
 
     <body>
@@ -130,7 +141,7 @@
                                                         <i class="fa fa-link"></i>
                                                     </span>
                                                     <div class="mail-contnet">
-                                                        <h5 class="message-title">(Nama)</h5>
+                                                        <h5 class="message-title">(Judul Notif)</h5>
                                                         <span class="mail-desc">(Just see the my new admin!)</span>
                                                         <span class="time">(9:30 AM)</span>
                                                     </div>
@@ -173,9 +184,9 @@
                                             class="img-circle"
                                             width="60"></div>
                                         <div class="ml-2">
-                                            <h4 class="mb-0">(Nama)</h4>
-                                            <p class=" mb-0">(Email)</p>
-                                            <p class=" mb-0">(Nomor HP)</p>
+                                            <h4 class="mb-0">{{Auth::user()->name}}</h4>
+                                            <p class=" mb-0">{{Auth::user()->email}}</p>
+                                            <p class=" mb-0">{{Auth::user()->telephone}}</p>
                                         </div>
                                     </div>
                                     <a class="dropdown-item" href="javascript:void(0)">
@@ -188,7 +199,7 @@
                                         Pengaturan
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)">
+                                    <a class="dropdown-item" href="{{url('logout')}}">
                                         <i class="fa fa-power-off mr-1 ml-1"></i>
                                         Logout
                                     </a>
@@ -244,10 +255,19 @@
                             <li class="sidebar-item">
                                 <a
                                     class="sidebar-link waves-effect waves-dark sidebar-link"
-                                    href="#"
+                                    href="{{url('dashboard')}}"
+                                    aria-expanded="false">
+                                    <i class="mdi mdi-view-dashboard"></i>
+                                    <span class="hide-menu">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a
+                                    class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="{{url('pengaturan_umum')}}"
                                     aria-expanded="false">
                                     <i class="mdi mdi-content-paste"></i>
-                                    <span class="hide-menu">Documentation</span>
+                                    <span class="hide-menu">Pengaturan&nbsp;Umum</span>
                                 </a>
                             </li>
                             <li class="nav-small-cap"></li>
@@ -270,7 +290,7 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-5 align-self-center">
-                            <h4 class="page-title">(Title)</h4>
+                            <h4 class="page-title">@yield('content-title')</h4>
                         </div>
                     </div>
                 </div>
@@ -281,7 +301,7 @@
                 <!-- Container fluid -->
                 <!-- ============================================================== -->
                 <div class="container-fluid">
-
+                    @yield('content-body')
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Container fluid -->
@@ -289,8 +309,9 @@
                 <!-- ============================================================== -->
                 <!-- footer -->
                 <!-- ============================================================== -->
+                <br>
                 <footer class="footer text-center">
-                    Copyright &copy; 2021 DKM Baiturrahman.
+                    {!! html_entity_decode($Gsetting->footer) !!}
                 </footer>
                 <!-- ============================================================== -->
                 <!-- End footer -->
@@ -306,7 +327,6 @@
         <!-- ============================================================== -->
         <!-- All Jquery -->
         <!-- ============================================================== -->
-        <script src="{{asset('template/assets/libs/jquery/dist/jquery.min.js')}}"></script>
         <!-- Bootstrap tether Core JavaScript -->
         <script src="{{asset('template/assets/libs/popper.js/dist/umd/popper.min.js')}}"></script>
         <script src="{{asset('template/assets/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
@@ -323,6 +343,12 @@
         <script src="{{asset('template/dist/js/sidebarmenu.js')}}"></script>
         <!--Custom JavaScript -->
         <script src="{{asset('template/dist/js/custom.js')}}"></script>
+
+        <script src="{{asset('fullscreen.js')}}"></script>
+
+        @include('message.toastr')
+
+        @yield('content-js')
     </body>
 
 </html>

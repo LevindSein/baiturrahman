@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GeneralSettingsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +20,15 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-Route::get('login', function(){
-    return view('home.login');
-});
+Route::get('logout', [AuthController::class, 'logout']);
+Route::resource('login', AuthController::class);
 
 Route::get('dashboard', function(){
     return view('dashboard.index');
+});
+
+Route::get('pengaturan_umum', [GeneralSettingsController::class, 'index']);
+
+Route::get('qr_code', function(){
+    return view('qr_code.index');
 });
