@@ -10,19 +10,23 @@
         <meta name="author" content="Pemuda Baiturrahman - Levind Sein, Eki, Fahni"/>
         <meta name="description"content="Bayar zakat online, mempermudah masyarakat meraih kebaikan." />
         <meta name="robots" content="noindex, nofollow" />
-        <meta name="og:title" content="Portal Masjid Baiturrahman" />
+        <meta name="og:title" content="{{$Gsetting->title}}" />
         <meta name="og:type" content="website" />
-        <meta name="og:image" content="{{asset('home/login/img/meta.jpg')}}" />
+        <meta name="og:image" content="{{asset($Gsetting->favicon)}}" />
         <meta name="google" content="notranslate">
 
         <!-- Favicon icon -->
-        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('template/assets/images/favicon.png')}}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset($Gsetting->favicon)}}">
         <title>@yield('content-title') | {{$Gsetting->title}}</title>
 
         <script src="{{asset('template/assets/libs/jquery/dist/jquery.min.js')}}"></script>
 
         <!-- Custom CSS -->
         <link href="{{asset('template/dist/css/style.min.css')}}" rel="stylesheet">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{{asset('vendor/fontawesome/css/all.min.css')}}" type="text/css">
+        <link rel="stylesheet" href="{{asset('vendor/fontawesomepro/css/all.min.css')}}" type="text/css">
 
         {{-- Toastr --}}
         <link rel="stylesheet" type="text/css" href="{{asset('home/login/toastr.min.css')}}">
@@ -224,33 +228,19 @@
                     <!-- Sidebar navigation-->
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav">
-                            <li class="nav-small-cap"></li>
-                            <li class="sidebar-item">
+                            <li class="p-15 mt-1">
                                 <a
-                                    class="sidebar-link has-arrow waves-effect waves-dark"
                                     href="javascript:void(0)"
-                                    aria-expanded="false">
-                                    <i class="mdi mdi-view-dashboard"></i>
-                                    <span class="hide-menu">Dashboard</span>
+                                    class="btn btn-block create-btn text-white no-block d-flex align-items-center">
+                                    <i class="fa fa-plus-square"></i>
+                                    <span class="hide-menu ml-1">&nbsp;Tambah&nbsp;Baru</span>
                                 </a>
-                                <ul aria-expanded="false" class="collapse first-level">
-                                    <li class="sidebar-item">
-                                        <a href="#" class="sidebar-link">
-                                            <i class="mdi mdi-adjust"></i>
-                                            <span class="hide-menu">
-                                                Classic
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <a href="#" class="sidebar-link">
-                                            <i class="mdi mdi-adjust"></i>
-                                            <span class="hide-menu">
-                                                Analytical
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <a
+                                    href="javascript:void(0)"
+                                    class="btn btn-block create-btn text-white no-block d-flex align-items-center">
+                                    <i class="fas fa-sack"></i>
+                                    <span class="hide-menu ml-1">&nbsp;Bayar&nbsp;Zakat</span>
+                                </a>
                             </li>
                             <li class="sidebar-item">
                                 <a
@@ -264,10 +254,73 @@
                             <li class="sidebar-item">
                                 <a
                                     class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="{{url('#')}}"
+                                    aria-expanded="false">
+                                    <i class="mdi mdi-account-check"></i>
+                                    <span class="hide-menu">Muzakki</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a
+                                    class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="{{url('#')}}"
+                                    aria-expanded="false">
+                                    <i class="mdi mdi-account-convert"></i>
+                                    <span class="hide-menu">Mustahiq</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a
+                                    class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="{{url('#')}}"
+                                    aria-expanded="false">
+                                    <i class="mdi mdi-math-compass"></i>
+                                    <span class="hide-menu">Rumusan</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a
+                                    class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="{{url('#')}}"
+                                    aria-expanded="false">
+                                    <i class="mdi mdi-cube-send"></i>
+                                    <span class="hide-menu">Transaksi</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a
+                                    class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="{{url('#')}}"
+                                    aria-expanded="false">
+                                    <i class="mdi mdi-book"></i>
+                                    <span class="hide-menu">Pembukuan</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a
+                                    class="sidebar-link waves-effect waves-dark sidebar-link"
                                     href="{{url('pengaturan_umum')}}"
                                     aria-expanded="false">
-                                    <i class="mdi mdi-content-paste"></i>
+                                    <i class="mdi mdi-settings"></i>
                                     <span class="hide-menu">Pengaturan&nbsp;Umum</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a
+                                    class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="{{url('#')}}"
+                                    aria-expanded="false">
+                                    <i class="mdi mdi-account"></i>
+                                    <span class="hide-menu">User</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a
+                                    class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="{{url('#')}}"
+                                    aria-expanded="false">
+                                    <i class="mdi mdi-account-search"></i>
+                                    <span class="hide-menu">Riwayat&nbsp;Login</span>
                                 </a>
                             </li>
                             <li class="nav-small-cap"></li>

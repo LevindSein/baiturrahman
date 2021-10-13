@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Okt 2021 pada 10.36
+-- Waktu pembuatan: 13 Okt 2021 pada 21.17
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 7.4.14
 
@@ -36,6 +36,36 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `gsettings`
+--
+
+CREATE TABLE `gsettings` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `home_text` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `home_img_1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `home_img_2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo_text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `favicon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `footer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `gsettings`
+--
+
+INSERT INTO `gsettings` (`id`, `home_text`, `home_img_1`, `home_img_2`, `logo_img`, `logo_text`, `title`, `favicon`, `footer`, `address`, `phone`, `email`, `created_at`, `updated_at`) VALUES
+(1, '{\r\n    \"home_text_title_1\": \"Bayar Zakat ?\",\r\n    \"home_text_desc_1\": \"Raih kebaikan bersama Masjid Baiturrahman Perum Villa Permata Cikampek dan Taman Senopati\",\r\n    \"home_text_title_2\": \"Telah menjadi bagian dari Kami ?\",\r\n    \"home_text_desc_2\": \"Wujudkan kebaikan bersama kami sekarang juga.\"\r\n}', 'gsetting/log.svg', 'gsetting/register.svg', 'gsetting/logo-icon.png', 'gsetting/logo-text.png', 'Portal Masjid Baiturrahman', 'gsetting/favicon.png', 'Copyright &copy; 2021 DKM Masjid Baiturrahman by Pemuda Hijrah', 'https://goo.gl/maps/byYAtC16Gca5aT8x6', 'https://wa.me/6287838840774', 'mailto:fahniamsyari1999@gmail.com', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -97,6 +127,7 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `foto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `level` int(1) NOT NULL,
@@ -110,6 +141,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id`, `foto`, `username`, `name`, `level`, `telephone`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'fahni', 'Fahni', 1, '6287838840774', 'fahni@gmail.com', NULL, '$2a$12$x4q0RYL6c.ISLrVuS59GLuIUlYItZrPu9RoORiKdIOcp8Qph/IF2i', NULL, NULL, NULL);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -119,6 +157,12 @@ CREATE TABLE `users` (
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indeks untuk tabel `gsettings`
+--
+ALTER TABLE `gsettings`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `migrations`
@@ -145,7 +189,9 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `telephone` (`telephone`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -156,6 +202,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `gsettings`
+--
+ALTER TABLE `gsettings`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
@@ -173,7 +225,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
