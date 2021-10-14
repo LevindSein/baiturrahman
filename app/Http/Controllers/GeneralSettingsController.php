@@ -52,7 +52,7 @@ class GeneralSettingsController extends Controller
             $extension = strtolower($image->getClientOriginalExtension());
             $image_full_name = "gsetting/" . $image_name . '.' . $extension;
 
-            $location = public_path($image_full_name);
+            $location = storage_path('app/public/' . $image_full_name);
             Image::make($image)->save($location);
             $data = $image_full_name;
         }
@@ -60,7 +60,7 @@ class GeneralSettingsController extends Controller
             return redirect('pengaturan_umum')->with('error', 'Gambar tidak terdeteksi.');
         }
 
-        $dataset->favicon = $data;
+        $dataset->favicon = "storage/" . $data;
         $dataset->update();
         return redirect('pengaturan_umum')->with('success', 'Gambar berhasil disimpan');
     }
@@ -124,7 +124,7 @@ class GeneralSettingsController extends Controller
             $extension = strtolower($image->getClientOriginalExtension());
             $image_full_name = "gsetting/" . $image_name . '.' . $extension;
 
-            $location = public_path($image_full_name);
+            $location =  storage_path('app/public/' . $image_full_name);
             Image::make($image)->save($location);
             $data = $image_full_name;
         }
@@ -132,7 +132,7 @@ class GeneralSettingsController extends Controller
             return redirect('pengaturan_umum')->with('error', 'Gambar tidak terdeteksi.');
         }
 
-        $dataset->home_img_1 = $data;
+        $dataset->home_img_1 = "storage/" . $data;
         $dataset->update();
         return redirect('pengaturan_umum')->with('success', 'Gambar berhasil disimpan');
     }
@@ -151,7 +151,7 @@ class GeneralSettingsController extends Controller
             $extension = strtolower($image->getClientOriginalExtension());
             $image_full_name = "gsetting/" . $image_name . '.' . $extension;
 
-            $location = public_path($image_full_name);
+            $location =  storage_path('app/public/' . $image_full_name);
             Image::make($image)->save($location);
             $data = $image_full_name;
         }
@@ -159,7 +159,7 @@ class GeneralSettingsController extends Controller
             return redirect('pengaturan_umum')->with('error', 'Gambar tidak terdeteksi.');
         }
 
-        $dataset->home_img_2 = $data;
+        $dataset->home_img_2 = "storage/" . $data;
         $dataset->update();
         return redirect('pengaturan_umum')->with('success', 'Gambar berhasil disimpan');
     }
@@ -178,7 +178,7 @@ class GeneralSettingsController extends Controller
             $extension = strtolower($image->getClientOriginalExtension());
             $image_full_name = "gsetting/" . $image_name . '.' . $extension;
 
-            $location = public_path($image_full_name);
+            $location =  storage_path('app/public/' . $image_full_name);
             Image::make($image)->resize(60,40)->save($location);
             $data = $image_full_name;
         }
@@ -186,7 +186,7 @@ class GeneralSettingsController extends Controller
             return redirect('pengaturan_umum')->with('error', 'Gambar tidak terdeteksi.');
         }
 
-        $dataset->logo_img = $data;
+        $dataset->logo_img = "storage/" . $data;
         $dataset->update();
         return redirect('pengaturan_umum')->with('success', 'Gambar berhasil disimpan');
     }
@@ -205,7 +205,7 @@ class GeneralSettingsController extends Controller
             $extension = strtolower($image->getClientOriginalExtension());
             $image_full_name = "gsetting/" . $image_name . '.' . $extension;
 
-            $location = public_path($image_full_name);
+            $location =  storage_path('app/public/' . $image_full_name);
             Image::make($image)->resize(90,20)->save($location);
             $data = $image_full_name;
         }
@@ -213,7 +213,7 @@ class GeneralSettingsController extends Controller
             return redirect('pengaturan_umum')->with('error', 'Gambar tidak terdeteksi.');
         }
 
-        $dataset->logo_text = $data;
+        $dataset->logo_text = "storage/" . $data;
         $dataset->update();
         return redirect('pengaturan_umum')->with('success', 'Gambar berhasil disimpan');
     }
