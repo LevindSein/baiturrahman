@@ -28,6 +28,18 @@ Route::get('dashboard', function(){
 });
 
 Route::get('pengaturan_umum', [GeneralSettingsController::class, 'index']);
+Route::prefix('gsetting')->group(function () {
+    Route::post('title', [GeneralSettingsController::class, 'title']);
+    Route::post('footer', [GeneralSettingsController::class, 'footer']);
+    Route::post('favicon', [GeneralSettingsController::class, 'favicon']);
+    Route::post('sosial', [GeneralSettingsController::class, 'sosial']);
+    Route::post('login', [GeneralSettingsController::class, 'login']);
+    Route::post('registrasi', [GeneralSettingsController::class, 'registrasi']);
+    Route::post('gambar_login', [GeneralSettingsController::class, 'gambar_login']);
+    Route::post('gambar_registrasi', [GeneralSettingsController::class, 'gambar_registrasi']);
+    Route::post('logo_dashboard', [GeneralSettingsController::class, 'logo_dashboard']);
+    Route::post('logo_text_dashboard', [GeneralSettingsController::class, 'logo_text_dashboard']);
+});
 
 Route::get('qr_code', function(){
     return view('qr_code.index');

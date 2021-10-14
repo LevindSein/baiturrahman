@@ -9,10 +9,10 @@
         <meta name="author" content="Pemuda Baiturrahman - Levind Sein, Eki, Fahni"/>
         <meta name="description"content="Bayar zakat online, mempermudah masyarakat meraih kebaikan." />
         <meta name="robots" content="noindex, nofollow" />
-        <meta name="og:title" content="Portal Masjid Baiturrahman" />
+        <meta name="og:title" content={{$Gsetting->title}} />
         <meta name="og:type" content="website" />
-        <meta name="og:image" content="{{asset('home/login/img/meta.jpg')}}" />
-        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('home/login/img/favicon.png')}}">
+        <meta name="og:image" content="{{asset($Gsetting->favicon)}}" />
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset($Gsetting->favicon)}}">
         <meta name="google" content="notranslate">
 
         <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
@@ -48,13 +48,13 @@
                         <input type="submit" value="Masuk" class="btn solid"/>
                         <a href="#" class="social-text">Lupa password ?</a>
                         <div class="social-media">
-                            <a href="{{$Gsetting->phone}}" class="social-icon">
+                            <a href="{{$Gsetting->phone}}" target="_blank" class="social-icon">
                                 <i class="fas fa-phone"></i>
                             </a>
-                            <a href="{{$Gsetting->email}}" class="social-icon">
+                            <a href="{{$Gsetting->email}}" target="_blank" class="social-icon">
                                 <i class="fas fa-envelope"></i>
                             </a>
-                            <a href="{{$Gsetting->address}}" class="social-icon">
+                            <a href="{{$Gsetting->address}}" target="_blank" class="social-icon">
                                 <i class="fas fa-map-marker-alt"></i>
                             </a>
                         </div>

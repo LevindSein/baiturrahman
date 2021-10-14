@@ -42,7 +42,7 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
+        $request->validate([
             'username' => ['required', 'max:50'],
             'password' => ['required', 'min:5'],
         ],$this->messages);
@@ -69,8 +69,6 @@ class AuthController extends Controller
         else{
             return redirect('login')->with('error','Oops! Akun tidak ditemukan');
         }
-
-        return redirect('login');
     }
 
     /**

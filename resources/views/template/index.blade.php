@@ -14,6 +14,7 @@
         <meta name="og:type" content="website" />
         <meta name="og:image" content="{{asset($Gsetting->favicon)}}" />
         <meta name="google" content="notranslate">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
 
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="{{asset($Gsetting->favicon)}}">
@@ -67,13 +68,13 @@
                             <b class="logo-icon">
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                                 <!-- Dark Logo icon -->
-                                <img src="{{asset('template/assets/images/logo-icon.png')}}" alt="homepage" class="dark-logo"/>
+                                <img src="{{asset($Gsetting->logo_img)}}" width="60" height="40" class="dark-logo"/>
                             </b>
                             <!--End Logo icon -->
                             <!-- Logo text -->
                             <span class="logo-text">
                                 <!-- dark Logo text -->
-                                <img src="{{asset('template/assets/images/logo-text.png')}}" alt="homepage" class="dark-logo"/>
+                                <img src="{{asset($Gsetting->logo_text)}}" width="90" height="20" class="dark-logo"/>
                             </span>
                         </a>
                         <!-- ============================================================== -->
@@ -266,7 +267,7 @@
                                     href="{{url('#')}}"
                                     aria-expanded="false">
                                     <i class="mdi mdi-account-convert"></i>
-                                    <span class="hide-menu">Mustahiq</span>
+                                    <span class="hide-menu">Mustahik</span>
                                 </a>
                             </li>
                             <li class="sidebar-item">
@@ -283,8 +284,17 @@
                                     class="sidebar-link waves-effect waves-dark sidebar-link"
                                     href="{{url('#')}}"
                                     aria-expanded="false">
-                                    <i class="mdi mdi-cube-send"></i>
+                                    <i class="mdi mdi-package-variant"></i>
                                     <span class="hide-menu">Transaksi</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a
+                                    class="sidebar-link waves-effect waves-dark sidebar-link"
+                                    href="{{url('#')}}"
+                                    aria-expanded="false">
+                                    <i class="mdi mdi-cube-send"></i>
+                                    <span class="hide-menu">Distribusi</span>
                                 </a>
                             </li>
                             <li class="sidebar-item">
@@ -397,7 +407,7 @@
         <!--Custom JavaScript -->
         <script src="{{asset('template/dist/js/custom.js')}}"></script>
 
-        <script src="{{asset('fullscreen.js')}}"></script>
+        <script src="{{asset('custom.js')}}"></script>
 
         @include('message.toastr')
 
