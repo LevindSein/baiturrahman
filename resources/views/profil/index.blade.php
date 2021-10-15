@@ -49,8 +49,22 @@ Profil
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="current-month" role="tabpanel" aria-labelledby="pills-timeline-tab">
                     <div class="card-body">
-                        <form class="form-horizontal form-material" action="{{url('profil')}}" method="post">
+                        <form class="form-horizontal form-material" action="{{url('profil')}}" method="post" enctype="multipart/form-data">
                             @csrf
+                            <div class="form-group">
+                                <label class="col-md-12">Ganti Foto <span style="color: red">*</span></label>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Foto Profil</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="fotoInput" id="fotoInput" accept=".png, .jpg, .jpeg">
+                                            <label class="custom-file-label" for="fotoInput">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-md-12">Username (untuk Login) <span style="color: red">*</span></label>
                                 <div class="col-md-12">
@@ -58,7 +72,7 @@ Profil
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-12">Full Name <span style="color: red">*</span></label>
+                                <label class="col-md-12">Nama Lengkap <span style="color: red">*</span></label>
                                 <div class="col-md-12">
                                     <input type="text" name="name" required autocomplete="off" maxlength="50" placeholder="Nama Lengkap" value="{{Auth::user()->name}}" class="form-control form-control-line">
                                 </div>
@@ -115,6 +129,16 @@ Profil
 @endsection
 
 @section('content-js')
+<script>
+    const fileBlocks = document.querySelectorAll('.custom-file');
+    [...fileBlocks].forEach(function (block) {
+        block.querySelector('input[type="file"]').onchange = function () {
+            const filename = this.files[0].name;
+            block.querySelector('.custom-file-label').textContent = filename.slice(0, 30);
+        }
+    })
+</script>
+
 <script>
     $('[type=tel]').on('change', function(e) {
         $(e.target).val($(e.target).val().replace(/[^\d\.]/g, ''))

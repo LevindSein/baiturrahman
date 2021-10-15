@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Image;
 
 use App\Models\Gsetting;
@@ -50,7 +49,7 @@ class GeneralSettingsController extends Controller
 
             $image = Image::make($image)->resize(300,300)->encode('png', 75);
 
-            $image_name = "favicon";;
+            $image_name = "favicon";
             $image_full_name = "gsetting/" . $image_name . '.png';
             $location = storage_path('app/public/' . $image_full_name);
             $image->save($location);

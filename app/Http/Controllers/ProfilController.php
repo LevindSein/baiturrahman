@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Image;
 
 class ProfilController extends Controller
 {
@@ -52,6 +53,20 @@ class ProfilController extends Controller
             $user->email= $email;
             $user->telephone= $telephone;
             $user->alamat = $alamat;
+
+            if($request->hasFile('fotoInput')){
+                $image = $request->file('fotoInput');
+
+                $image = Image::make($image)->resize(500,500)->encode('png', 75);
+
+                $image_name = Auth::user()->id;
+                $image_full_name = "users/" . $image_name . '.png';
+                $location = storage_path('app/public/' . $image_full_name);
+                $image->save($location);
+
+                $data = $image_full_name;
+                $user->foto = "storage/" . $data;
+            }
 
             if (Hash::check(md5($password), $user->password)) {
                 if($passwordBaru != NULL && $passwordBaru === $konfirmasiPasswordBaru){
