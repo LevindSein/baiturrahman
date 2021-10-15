@@ -5,14 +5,31 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <meta name="keyword" content="Portal Masjid Baiturrahman, Pembayaran Zakat, Pemuda Baiturrahman, Masjid Baiturrahman, Taman Senopati, Villa Permata Cikampek"/>
+        <meta name="keyword" content="Portal Masjid Baiturrahman, Pembayaran Zakat, Masjid Baiturrahman, Taman Senopati, Villa Permata Cikampek"/>
         <meta name="author" content="Pemuda Baiturrahman - Levind Sein, Eki, Fahni"/>
-        <meta name="description"content="Bayar zakat online, mempermudah masyarakat meraih kebaikan." />
-        <meta name="robots" content="noindex, nofollow" />
-        <meta name="og:title" content={{$Gsetting->title}} />
-        <meta name="og:type" content="website" />
-        <meta name="og:image" content="{{asset($Gsetting->favicon)}}" />
-        <link rel="icon" type="image/png" sizes="16x16" href="{{asset($Gsetting->favicon)}}">
+        <meta name="description"content="Pembayaran Zakat Fitrah dan Maal" />
+        <meta property="og:site_name" content="Masjid Baiturrahman">
+        <meta property="og:title" content="Masjid Baiturrahman" />
+        <meta property="og:description" content="Pembayaran Zakat Fitrah dan Maal" />
+        <meta property="og:image" itemprop="image" content="{{asset($Gsetting->favicon)}}">
+        <meta property="og:type" content="website" />
+        <link rel="shortcut icon" href="{{asset($Gsetting->favicon)}}">
+        <link rel="icon" sizes="16x16 32x32 64x64" href="{{asset($Gsetting->favicon)}}">
+        <link rel="icon" sizes="196x196" href="{{asset($Gsetting->favicon)}}">
+        <link rel="icon" sizes="160x160" href="{{asset($Gsetting->favicon)}}">
+        <link rel="icon" sizes="96x96" href="{{asset($Gsetting->favicon)}}">
+        <link rel="icon" sizes="64x64" href="{{asset($Gsetting->favicon)}}">
+        <link rel="icon" sizes="32x32" href="{{asset($Gsetting->favicon)}}">
+        <link rel="icon" sizes="16x16" href="{{asset($Gsetting->favicon)}}">
+        <link rel="apple-touch-icon" href="{{asset($Gsetting->favicon)}}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{asset($Gsetting->favicon)}}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{asset($Gsetting->favicon)}}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{asset($Gsetting->favicon)}}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{asset($Gsetting->favicon)}}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{asset($Gsetting->favicon)}}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{asset($Gsetting->favicon)}}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{asset($Gsetting->favicon)}}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset($Gsetting->favicon)}}">
         <meta name="google" content="notranslate">
 
         <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
@@ -46,7 +63,8 @@
                             <input required type="password" minlength="5" name="password" placeholder="Password"/>
                         </div>
                         <input type="submit" value="Masuk" class="btn solid"/>
-                        <a href="#" class="social-text">Lupa password ?</a>
+                        <!-- <a href="#" class="social-text">Lupa password ?</a> -->
+                        <span class="social-text"></span>
                         <div class="social-media">
                             <a href="{{$Gsetting->phone}}" target="_blank" class="social-icon">
                                 <i class="fas fa-phone"></i>
@@ -81,8 +99,8 @@
             <div class="panels-container">
                 <div class="panel left-panel">
                     <div class="content">
-                        <h3>{{$Gsetting->home_text->home_text_title_1}}</h3>
-                        <p>{{$Gsetting->home_text->home_text_desc_1}}</p>
+                        <h3>{!! html_entity_decode($Gsetting->home_text->home_text_title_1)!!}</h3>
+                        <p>{!! html_entity_decode($Gsetting->home_text->home_text_desc_1)!!}</p>
                         <button class="btn transparent" id="sign-up-btn">
                             Daftar
                         </button>
@@ -103,7 +121,7 @@
         </div>
 
         <script src="{{asset('home/login/app.js')}}"></script>
-        <script src="{{asset('fullscreen.js')}}"></script>
+        <script src="{{asset('custom.js')}}"></script>
         <script>
             var field = document.querySelector('[name="username"]');
 

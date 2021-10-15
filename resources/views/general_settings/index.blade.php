@@ -287,7 +287,7 @@ $(document).ready(function(){
         updateAjax("footer", dataset);
     });
 
-    $('#sosialForm').submit('submit', function(e){
+    $('#sosialForm').submit(function(e){
 		e.preventDefault();
         let dataset = {
             waInput : $('#waInput').val(),
@@ -297,7 +297,7 @@ $(document).ready(function(){
         updateAjax("sosial", dataset);
     });
 
-    $('#loginForm').submit('submit', function(e){
+    $('#loginForm').submit(function(e){
 		e.preventDefault();
         let dataset = {
             loginTitleInput : $('#loginTitleInput').val(),
@@ -306,7 +306,7 @@ $(document).ready(function(){
         updateAjax("login", dataset);
     });
 
-    $('#registrasiForm').submit('submit', function(e){
+    $('#registrasiForm').submit(function(e){
 		e.preventDefault();
         let dataset = {
             registrasiTitleInput : $('#registrasiTitleInput').val(),

@@ -41,6 +41,10 @@ Route::prefix('gsetting')->group(function () {
     Route::post('logo_text_dashboard', [GeneralSettingsController::class, 'logo_text_dashboard']);
 });
 
+Route::get('storage_link', function () {
+    Artisan::call('storage:link');
+});
+
 Route::get('qr_code', function(){
     return view('qr_code.index');
 });

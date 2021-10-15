@@ -48,12 +48,13 @@ class GeneralSettingsController extends Controller
         if($request->hasFile('faviconInput')){
             $image = $request->file('faviconInput');
 
-            $image_name = "favicon";
-            $extension = strtolower($image->getClientOriginalExtension());
-            $image_full_name = "gsetting/" . $image_name . '.' . $extension;
+            $image = Image::make($image)->resize(300,300)->encode('png', 75);
 
+            $image_name = "favicon";;
+            $image_full_name = "gsetting/" . $image_name . '.png';
             $location = storage_path('app/public/' . $image_full_name);
-            Image::make($image)->save($location);
+            $image->save($location);
+
             $data = $image_full_name;
         }
         else{

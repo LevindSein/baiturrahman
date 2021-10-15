@@ -1,0 +1,1 @@
+ln -s /home/u2246494/anydemo/storage/app/public /home/u2246494/public_html/anydemo/storage
