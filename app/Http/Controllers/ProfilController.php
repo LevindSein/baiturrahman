@@ -3,16 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
-class AuthController extends Controller
+class ProfilController extends Controller
 {
-    protected $messages;
-
-    public function __construct(){
-        $this->messages = config('messages');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +15,7 @@ class AuthController extends Controller
      */
     public function index()
     {
-        // return Hash::make("a32e60b6551a006186b9f7dc62402dd0");
-        return view('home.login');
+        return view('profil.index');
     }
 
     /**
@@ -42,34 +36,44 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'username' => ['required', 'max:100'],
-            'password' => ['required', 'min:5'],
-        ],$this->messages);
+        $username = $request->username;
+        $name = $request->name;
+        $email = $request->email;
+        $telephone = $request->phone;
+        $alamat = $request->alamat;
+        $password = $request->password;
+        $passwordBaru = $request->passwordBaru;
+        $konfirmasiPasswordBaru = $request->konfirmasiPasswordBaru;
 
-        $username = strtolower($request->username);
-        if (strpos($username, '@') !== false && substr_count($username, '@') == 1) {
-            $credentials['email'] = $username;
-        }
-        else if(is_numeric($username)){
-            $credentials['telephone'] = $username;
-        }
-        else{
-            $credentials['username'] = $username;
-        }
-        $credentials['password'] = md5($request->password);
-        if (Auth::attempt($credentials)) {
+        try{
             $user = Auth::user();
-            if ($user->level == 1){
-                return redirect('dashboard')->with('success','Selamat Datang');
+            $user->username= $username;
+            $user->name= $name;
+            $user->email= $email;
+            $user->telephone= $telephone;
+            $user->alamat = $alamat;
+
+            if (Hash::check(md5($password), $user->password)) {
+                if($passwordBaru != NULL && $passwordBaru === $konfirmasiPasswordBaru){
+                    $user->password = Hash::make(md5($passwordBaru));
+                    $user->save();
+                }
+                else if($passwordBaru != $konfirmasiPasswordBaru){
+                    return redirect('profil')->with('error','Konfirmasi Password baru tidak cocok.');
+                }
+                else{
+                    $user->save();
+                }
             }
             else{
-                return redirect('login')->with('warning','Tidak memiliki akses.');
+                return redirect('profil')->with('error','Password saat ini salah.');
             }
         }
-        else{
-            return redirect('login')->with('error','Oops! Akun tidak ditemukan');
+        catch(\Exception $e){
+            return redirect('profil')->with('error','Update profil gagal.');
         }
+
+        return redirect('profil')->with('success','Update profil berhasil.');
     }
 
     /**
@@ -115,11 +119,5 @@ class AuthController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function logout(Request $request){
-        Session::flush();
-        Auth::logout();
-        return Redirect('login')->with('success', 'Sampai bertemu kembali');
     }
 }

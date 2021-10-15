@@ -41,7 +41,7 @@
         <script src="{{asset('template/assets/libs/jquery/dist/jquery.min.js')}}"></script>
 
         <!-- Custom CSS -->
-        <link href="{{asset('template/dist/css/style.min.css')}}" rel="stylesheet">
+        <link href="{{asset('template/dist/css/style.css')}}" rel="stylesheet">
 
         <!-- Font Awesome -->
         <link rel="stylesheet" href="{{asset('vendor/fontawesome/css/all.min.css')}}" type="text/css">
@@ -146,7 +146,7 @@
                                     <i class="mdi mdi-bell font-24"></i>
 
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
+                                <div class="dropdown-menu dropdown-menu-right mailbox animated fadeIn">
                                     <span class="with-arrow">
                                         <span class="bg-primary"></span></span>
                                     <ul class="list-style-none">
@@ -193,16 +193,16 @@
                                     data-toggle="dropdown"
                                     aria-haspopup="true"
                                     aria-expanded="false"><img
-                                    src="{{asset('template/assets/images/users/1.jpg')}}"
+                                    src="{{Auth::user()->foto}}"
                                     alt="user"
                                     class="rounded-circle"
                                     width="31"></a>
-                                <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+                                <div class="dropdown-menu dropdown-menu-right user-dd animated fadeIn">
                                     <span class="with-arrow">
                                         <span class="bg-primary"></span></span>
                                     <div class="d-flex no-block align-items-center p-15 bg-primary text-white mb-2">
                                         <div class=""><img
-                                            src="{{asset('template/assets/images/users/1.jpg')}}"
+                                            src="{{Auth::user()->foto}}"
                                             alt="user"
                                             class="img-circle"
                                             width="60"></div>
@@ -212,14 +212,9 @@
                                             <p class=" mb-0">{{Auth::user()->telephone}}</p>
                                         </div>
                                     </div>
-                                    <a class="dropdown-item" href="javascript:void(0)">
+                                    <a class="dropdown-item" href="{{url('profil')}}">
                                         <i class="ti-user mr-1 ml-1"></i>
                                         Profil
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="ti-settings mr-1 ml-1"></i>
-                                        Pengaturan
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{url('logout')}}">

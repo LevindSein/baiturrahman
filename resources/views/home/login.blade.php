@@ -56,7 +56,7 @@
                         <h2 class="title">Login</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input required type="text" autocomplete="off" maxlength="50" name="username" placeholder="Username/Email/No.Hp" style="text-transform:lowercase;"/>
+                            <input required type="text" autocomplete="off" maxlength="100" name="username" placeholder="Username/Email/No.Hp" style="text-transform:lowercase;"/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
