@@ -52,7 +52,7 @@ Profil
                         <form class="form-horizontal form-material" action="{{url('profil')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label class="col-md-12">Ganti Foto <span style="color: red">*</span></label>
+                                <label class="col-md-12">Ganti Foto</label>
                                 <div class="col-md-12">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
@@ -68,7 +68,7 @@ Profil
                             <div class="form-group">
                                 <label class="col-md-12">Username (untuk Login) <span style="color: red">*</span></label>
                                 <div class="col-md-12">
-                                    <input type="text" name="username" required autocomplete="off" maxlength="50" placeholder="Username" value="{{Auth::user()->username}}" class="form-control form-control-line" style="text-transform:lowercase;">
+                                    <input type="text" id="username" name="username" required autocomplete="off" maxlength="50" placeholder="Username" value="{{Auth::user()->username}}" class="form-control form-control-line" style="text-transform:lowercase;">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -80,7 +80,7 @@ Profil
                             <div class="form-group">
                                 <label for="example-email" class="col-md-12">Email</label>
                                 <div class="col-md-12">
-                                    <input type="email" name="email" maxlength="100" autocomplete="off" placeholder="something@email.com" value="{{Auth::user()->email}}" class="form-control form-control-line" name="example-email" id="example-email">
+                                    <input type="email" id="email" name="email" maxlength="100" autocomplete="off" placeholder="something@email.com" value="{{Auth::user()->email}}" class="form-control form-control-line" style="text-transform:lowercase;">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -148,5 +148,10 @@ Profil
         keys = ['0','1','2','3','4','5','6','7','8','9']
         return keys.indexOf(e.key) > -1
     });
+
+    $("#username, #email").on('input', function(key) {
+        var value = $(this).val();
+        $(this).val(value.replace(/ /g, '_'));
+    })
 </script>
 @endsection

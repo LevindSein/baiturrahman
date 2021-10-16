@@ -37,9 +37,21 @@ class ProfilController extends Controller
      */
     public function store(Request $request)
     {
-        $username = $request->username;
+        $request->validate([
+            'fotoInput' => 'nullable|image|mimes:jpeg,png,jpg',
+            'username' => 'required|max:50|alpha_dash',
+            'name' => 'required|max:50|regex:/^[\pL\s\-]+$/u',
+            'email' => 'nullable|max:100|email',
+            'phone' => 'nullable|numeric|digits_between:10,15',
+            'alamat' => 'required|max:255',
+            'password' => 'required|min:6|alpha_dash',
+            'passwordBaru' => 'nullable|min:6|alpha_dash',
+            'konfirmasiPasswordBaru' => 'nullable|min:6|alpha_dash',
+        ]);
+
+        $username = strtolower($request->username);
         $name = $request->name;
-        $email = $request->email;
+        $email = strtolower($request->email);
         $telephone = $request->phone;
         $alamat = $request->alamat;
         $password = $request->password;

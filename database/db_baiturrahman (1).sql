@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Okt 2021 pada 21.17
--- Versi server: 10.4.17-MariaDB
--- Versi PHP: 7.4.14
+-- Generation Time: Oct 16, 2021 at 10:41 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.4.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -40,7 +40,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gsettings`
+-- Table structure for table `gsettings`
 --
 
 CREATE TABLE `gsettings` (
@@ -61,16 +61,16 @@ CREATE TABLE `gsettings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `gsettings`
+-- Dumping data for table `gsettings`
 --
 
 INSERT INTO `gsettings` (`id`, `home_text`, `home_img_1`, `home_img_2`, `logo_img`, `logo_text`, `title`, `favicon`, `footer`, `address`, `phone`, `email`, `created_at`, `updated_at`) VALUES
-(1, '{\r\n    \"home_text_title_1\": \"Bayar Zakat ?\",\r\n    \"home_text_desc_1\": \"Raih kebaikan bersama Masjid Baiturrahman Perum Villa Permata Cikampek dan Taman Senopati\",\r\n    \"home_text_title_2\": \"Telah menjadi bagian dari Kami ?\",\r\n    \"home_text_desc_2\": \"Wujudkan kebaikan bersama kami sekarang juga.\"\r\n}', 'gsetting/log.svg', 'gsetting/register.svg', 'gsetting/logo-icon.png', 'gsetting/logo-text.png', 'Portal Masjid Baiturrahman', 'gsetting/favicon.png', 'Copyright &copy; 2021 DKM Masjid Baiturrahman by Pemuda Hijrah', 'https://goo.gl/maps/byYAtC16Gca5aT8x6', 'https://wa.me/6287838840774', 'mailto:fahniamsyari1999@gmail.com', NULL, NULL);
+(1, '{\"home_text_title_1\":\"Something here\",\"home_text_desc_1\":\"Something here\",\"home_text_title_2\":\"Something here\",\"home_text_desc_2\":\"Something here\"}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-10-16 08:36:47', '2021-10-16 08:36:47');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -80,7 +80,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -92,7 +92,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -104,7 +104,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `personal_access_tokens`
+-- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
@@ -122,7 +122,7 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -131,9 +131,10 @@ CREATE TABLE `users` (
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `level` int(1) NOT NULL,
-  `telephone` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telephone` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
+  `alamat` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -141,43 +142,43 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `foto`, `username`, `name`, `level`, `telephone`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'fahni', 'Fahni', 1, '6287838840774', 'fahni@gmail.com', NULL, '$2a$12$x4q0RYL6c.ISLrVuS59GLuIUlYItZrPu9RoORiKdIOcp8Qph/IF2i', NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `foto`, `username`, `name`, `level`, `telephone`, `email`, `email_verified_at`, `alamat`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'storage/users/1.png', 'admin', 'Admin Ganteng', 1, '6287838840774', 'adminganteng@gmail.com', NULL, 'Perum Villa Permata Cikampek', '$2y$10$9ENztiGjwvaErsKe3lv17OOWtb57/fNGRyp1CHXLo7xiexPhOMIY6', NULL, NULL, '2021-10-16 08:38:03');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indeks untuk tabel `gsettings`
+-- Indexes for table `gsettings`
 --
 ALTER TABLE `gsettings`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indeks untuk tabel `personal_access_tokens`
+-- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -185,44 +186,44 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`),
   ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `telephone` (`telephone`);
+  ADD UNIQUE KEY `telephone` (`telephone`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `gsettings`
+-- AUTO_INCREMENT for table `gsettings`
 --
 ALTER TABLE `gsettings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `personal_access_tokens`
+-- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
