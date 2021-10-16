@@ -41,7 +41,7 @@
         <script src="{{asset('template/assets/libs/jquery/dist/jquery.min.js')}}"></script>
 
         <!-- Custom CSS -->
-        <link href="{{asset('template/dist/css/style.css')}}" rel="stylesheet">
+        <link href="{{asset('template/dist/css/style.min.css')}}" rel="stylesheet">
 
         <!-- Font Awesome -->
         <link rel="stylesheet" href="{{asset('vendor/fontawesome/css/all.min.css')}}" type="text/css">
@@ -243,12 +243,14 @@
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav">
                             <li class="p-15 mt-1">
+                                @if(Auth::user()->level != 3)
                                 <a
                                     href="javascript:void(0)"
                                     class="btn btn-block create-btn text-white no-block d-flex align-items-center">
                                     <i class="fa fa-plus-square"></i>
                                     <span class="hide-menu ml-1">&nbsp;Tambah&nbsp;Baru</span>
                                 </a>
+                                @endif
                                 <a
                                     href="javascript:void(0)"
                                     class="btn btn-block create-btn text-white no-block d-flex align-items-center">
@@ -256,6 +258,7 @@
                                     <span class="hide-menu ml-1">&nbsp;Bayar&nbsp;Zakat</span>
                                 </a>
                             </li>
+                            @if(Auth::user()->level != 3)
                             <li class="sidebar-item">
                                 <a
                                     class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -346,6 +349,7 @@
                                     <span class="hide-menu">Riwayat&nbsp;Login</span>
                                 </a>
                             </li>
+                            @endif
                             <li class="nav-small-cap"></li>
                         </ul>
                     </nav>

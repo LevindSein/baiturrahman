@@ -56,11 +56,11 @@
                         <h2 class="title">Login</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input required type="text" autocomplete="off" maxlength="100" name="username" placeholder="Username/Email/No.Hp" style="text-transform:lowercase;"/>
+                            <input required type="text" autocomplete="off" maxlength="100" id="username" name="username" placeholder="Username/Email/No.Hp" style="text-transform:lowercase;"/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input required type="password" minlength="5" name="password" placeholder="Password"/>
+                            <input required type="password" minlength="6" name="password" placeholder="Password"/>
                         </div>
                         <input type="submit" value="Masuk" class="btn solid"/>
                         <!-- <a href="#" class="social-text">Lupa password ?</a> -->
@@ -77,19 +77,20 @@
                             </a>
                         </div>
                     </form>
-                    <form action="#" class="sign-up-form">
+                    <form action="{{url('register')}}" class="sign-up-form" method="post">
+                        @csrf
                         <h2 class="title">Registrasi</h2>
                         <div class="input-field">
                             <i class="fas fa-envelope"></i>
-                            <input required type="text" autocomplete="off" maxlength="50" name="username" placeholder="Email/No.Hp" style="text-transform:lowercase;"/>
+                            <input required type="text" autocomplete="off" maxlength="100" id="usernameReg" name="userRegistration" placeholder="Email/No.Hp" style="text-transform:lowercase;"/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input required type="password" minlength="5" name="password" placeholder="Password"/>
+                            <input required type="password" minlength="6" name="password" placeholder="Password"/>
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input required type="password" minlength="5" name="password" placeholder="Konfirmasi Password"/>
+                            <input required type="password" minlength="6" name="konfirmasiPassword" placeholder="Konfirmasi Password"/>
                         </div>
                         <input type="submit" class="btn" value="Daftar"/>
                     </form>
@@ -123,13 +124,16 @@
         <script src="{{asset('home/login/app.js')}}"></script>
         <script src="{{asset('custom.js')}}"></script>
         <script>
-            var field = document.querySelector('[name="username"]');
-
-            field.addEventListener('keypress', function ( event ) {
+            $('#username, #usernameReg').on('keypress', function ( event ) {
             var key = event.keyCode;
                 if (key === 32) {
                 event.preventDefault();
                 }
+            });
+
+            $("#username, #usernameReg").on('input', function(key) {
+                var value = $(this).val();
+                $(this).val(value.replace(/ /g, '_'));
             });
         </script>
 

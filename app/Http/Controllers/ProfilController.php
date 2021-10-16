@@ -53,6 +53,9 @@ class ProfilController extends Controller
         $name = $request->name;
         $email = strtolower($request->email);
         $telephone = $request->phone;
+        if(substr($telephone,0,1) == "0"){
+            return redirect('profil')->with('warning', 'Nomor diawali 62 atau kode negara.');
+        }
         $alamat = $request->alamat;
         $password = $request->password;
         $passwordBaru = $request->passwordBaru;

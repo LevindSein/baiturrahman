@@ -21,7 +21,7 @@ Profil
                 <small class="text-muted">Email</small>
                 <h6>{{Auth::user()->email}}</h6>
                 <small class="text-muted pt-4 db">Whatsapp</small>
-                <h6>+{{Auth::user()->telephone}}</h6>
+                <h6>@if(Auth::user()->telephone)+@endif{{Auth::user()->telephone}}</h6>
                 <small class="text-muted pt-4 db">Alamat</small>
                 <h6>{{Auth::user()->alamat}}</h6>
             </div>
@@ -152,6 +152,11 @@ Profil
     $("#username, #email").on('input', function(key) {
         var value = $(this).val();
         $(this).val(value.replace(/ /g, '_'));
+    });
+    $("#phone").on("input", function() {
+        if (/^0/.test(this.value)) {
+            this.value = this.value.replace(/^0/, "")
+        }
     })
 </script>
 @endsection

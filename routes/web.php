@@ -22,6 +22,7 @@ Route::get('/', function () {
 });
 
 Route::get('logout', [AuthController::class, 'logout']);
+Route::post('register', [AuthController::class, 'register']);
 Route::resource('login', AuthController::class);
 
 
