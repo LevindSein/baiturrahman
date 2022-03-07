@@ -289,7 +289,7 @@
                             <li class="sidebar-item">
                                 <a
                                     class="sidebar-link waves-effect waves-dark sidebar-link"
-                                    href="{{url('#')}}"
+                                    href="{{url('rumusan')}}"
                                     aria-expanded="false">
                                     <i class="mdi mdi-math-compass"></i>
                                     <span class="hide-menu">Rumusan</span>

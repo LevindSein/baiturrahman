@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Image;
 
+use App\Models\User;
+
 class ProfilController extends Controller
 {
     /**
@@ -62,7 +64,7 @@ class ProfilController extends Controller
         $konfirmasiPasswordBaru = $request->konfirmasiPasswordBaru;
 
         try{
-            $user = Auth::user();
+            $user = User::find(Auth::user()->id);
             $user->username= $username;
             $user->name= $name;
             $user->email= $email;

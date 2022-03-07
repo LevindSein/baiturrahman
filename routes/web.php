@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GeneralSettingsController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\RumusanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,8 @@ Route::middleware('checkauth')->group(function(){
             Route::post('logo_dashboard', [GeneralSettingsController::class, 'logo_dashboard']);
             Route::post('logo_text_dashboard', [GeneralSettingsController::class, 'logo_text_dashboard']);
         });
+
+        Route::resource('rumusan', RumusanController::class);
     });
 
     Route::resource('profil', ProfilController::class);
